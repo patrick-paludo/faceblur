@@ -1,0 +1,8 @@
+build==0.9.0
+imutils==0.5.4
+numpy==1.23.5
+opencv-python==4.6.0.66
+packaging==21.3
+pep517==0.13.0
+pyparsing==3.0.9
+tomli==2.0.1
