@@ -48,11 +48,10 @@ def blurFaces(filePath, fileType):
     if (fileType == "imagem"):
         imagem = cv2.imread(filePath)
         imagemCinza = cv2.cvtColor(imagem, cv2.COLOR_BGR2GRAY)
-        imagemEqualizada = cv2.equalizeHist(imagemCinza)
 
-        facesDetectadas = classificador.detectMultiScale(imagemEqualizada)
+        facesDetectadas = classificador.detectMultiScale(imagemCinza)
 
-        for(x, y, largura, altura) in facesDetectadas:
+        for (x, y, largura, altura) in facesDetectadas:
             blur = imagem[y:y+altura, x:x+largura]
             blur = cv2.GaussianBlur(blur, (23,23), 30)
             imagem[y:y+blur.shape[0], x:x+blur.shape[1]] = blur
@@ -72,11 +71,12 @@ def blurFaces(filePath, fileType):
 
             frameCinza = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             facesDetectadas = classificador.detectMultiScale(frameCinza)
+            
             for (x, y, largura, altura) in facesDetectadas:
                 blur = frame[y:y + altura, x:x + largura]
                 blur = cv2.GaussianBlur(blur, (27, 27), 30)
                 frame[y:y + blur.shape[0], x:x + blur.shape[1]] = blur
-            cv2.imshow('Captura de video', frame)
+            cv2.imshow("Faceblur - " + str(filePath), frame)
             if(cv2.waitKey(1) == ord('q')):
                 break
         video.release()
